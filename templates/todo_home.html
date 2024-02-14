@@ -1,0 +1,50 @@
+{% include 'navigationbar.html' %}
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
+        <script src="{% static 'js/changeurl.js' %}"></script>
+        <style>
+            .todo-items-div {
+                display: flex;
+                flex-wrap: wrap;
+                
+                align-items: center;
+            }
+
+            .todo-item {
+                margin: 2%;
+                width: 25%;
+                height: 25%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Current to-dos</h1>
+        <section>
+            <div class="todo-items-div">
+                {% for todo in todos %}
+                <div class="rounded-section todo-item">
+                    <!-- <form method="POST" action="idkkk">
+                        {% csrf_token %}
+                        <input type="hidden">
+                        <button type="submit" style="background-color: red; text-align: right">X</button><br>
+                    </form> -->
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="modifying_todo_title" value="{{todo.title}}">
+                        <button type="submit">{{todo.title}}</button><br>
+                    </form>
+                    <p>Due date: {{todo.due_date}}</p>
+                    <p>Completed: {{todo.completed}}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <button onclick="changeURL('createtodos')">Create a new to-do</button><br>
+        </section>
+    </body>
+</html>
+
+{% include 'contacts.html' %}
+

@@ -1,0 +1,20 @@
+{% include 'navigationbar.html' %}
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
+        <script src="{% static 'js/changeurl.js' %}"></script>
+    </head>
+
+    <body>
+        <h1>Home page</h1>
+        This is a website with different web applications
+        <section class="rounded-section">
+            Available apps:<br>
+            1. <button onclick="changeURL('todo')">To-do list</button><br>
+        </section>
+    </body>
+</html>
+
+{% include 'contacts.html' %}
