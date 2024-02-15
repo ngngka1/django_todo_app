@@ -1,17 +1,21 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
-from .models import ToDoItem
+from .models import ToDoItem, Subject
 from .forms import ToDoItemForm
 import django.contrib.messages
 import datetime
 
 def show_home_page(request):
-    global modifying_todo
-    todos = ToDoItem.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') is not None else ""
+    if q:
+        todos = ToDoItem.objects.filter(subject__name__icontains=q)
+    else:
+        todos = ToDoItem.objects.all()
+    subjects = Subject.objects.all()
     if not todos.exists():
         todos = None
-    return render(request, 'todo_home.html', {"todos": todos})
+    return render(request, 'todo_home.html', {"todos": todos, "subjects": subjects})
 
 def create_todo(request):
     todo = None

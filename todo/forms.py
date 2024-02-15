@@ -5,4 +5,4 @@ class ToDoItemForm(forms.ModelForm):
     class Meta:
         model = ToDoItem
         # exclude = ['is_urgent', 'modifying']
-        fields = ['title', 'due_date', 'completed']
+        fields = ['subject', 'title', 'due_date', 'completed']

@@ -2,10 +2,16 @@ from django.db import models
 import datetime
 
 # Create your models here.
+    
+class Subject(models.Model):
+    name = models.CharField(max_length=200)
+    
+    def __str__(self) -> str:
+        return str(self.name)
 
-# To extract data from database, we have to use Django's query API
 class ToDoItem(models.Model):
     title = models.CharField(max_length=200)
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
     due_date = models.DateField(default=datetime.date.today)
     completed = models.BooleanField(default=False)
     # is_urgent = models.BooleanField(default=False)
@@ -13,3 +19,4 @@ class ToDoItem(models.Model):
     
     def __str__(self) -> str:
         return self.title
+
