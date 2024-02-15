@@ -25,23 +25,17 @@
         <section>
             <div class="todo-items-div">
                 {% for todo in todos %}
-                <div class="rounded-section todo-item">
-                    <!-- <form method="POST" action="idkkk">
-                        {% csrf_token %}
-                        <input type="hidden">
-                        <button type="submit" style="background-color: red; text-align: right">X</button><br>
-                    </form> -->
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <input type="hidden" name="modifying_todo_title" value="{{todo.title}}">
-                        <button type="submit">{{todo.title}}</button><br>
-                    </form>
-                    <p>Due date: {{todo.due_date}}</p>
-                    <p>Completed: {{todo.completed}}</p>
-                </div>
+                    <div class="rounded-section todo-item">
+                        <button onclick="changeURL('delete-todo/{{todo.id}}')" style="text-align: right; background-color: red">
+                        X
+                        </button>
+                        <button onclick="changeURL('modify-todo/{{todo.id}}')">{{todo.title}}</button><br>
+                        <p>Due date: {{todo.due_date}}</p>
+                        <p>Completed: {{todo.completed}}</p>
+                    </div>
                 {% endfor %}
             </div>
-            <button onclick="changeURL('createtodos')">Create a new to-do</button><br>
+            <button onclick="changeURL('create-todo')">Create a new to-do</button><br>
         </section>
     </body>
 </html>

@@ -6,48 +6,40 @@ from .forms import ToDoItemForm
 import django.contrib.messages
 import datetime
 
-modifying_todo = None
-
 def show_home_page(request):
     global modifying_todo
     todos = ToDoItem.objects.all()
     if not todos.exists():
-        todos = []
-        
-    if request.method == 'POST':
-        modifiying_todo_title = request.POST.get('modifying_todo_title')
-        modifying_todo = ToDoItem.objects.get(title=modifiying_todo_title) # will be changed
-        # when i know how to pass arguments to views through redirect
-        return redirect(modify_todos)
-    else:
-        return render(request, 'todo_home.html', {"todos": todos})
+        todos = None
+    return render(request, 'todo_home.html', {"todos": todos})
 
 def create_todo(request):
-    if request.method == 'POST':
-        form = ToDoItemForm(request.POST)
-        if form.is_valid():
-            form.save(True)
-            return redirect('../')
+    todo = None
+    form = ToDoItemForm()
+    if request.method == "POST":
+        submitted_form = ToDoItemForm(request.POST)
+        if submitted_form.is_valid():
+            submitted_form.save()
+            return redirect('../') #return to previous page ("todo_home.html")
         else:
-            # django.contrib.messages.info(request, "Invalid input!")
-            return HttpResponse("Invalid Input")
-    else:
-        form = ToDoItemForm()
-        return render(request, "manage_todos.html", {"todo": None, "current_date": datetime.date.today, "form": form})      
+            return HttpResponse("Invalid Input! return to the previous page to reinput")
+    return render(request, 'todo_form.html', {"todo": todo, "form": form})
 
-def modify_todos(request):
+def modify_todo(request, pk): # pk: primary key (id of the model instance)
+    modifying_todo = ToDoItem.objects.get(id=pk)
+    form = ToDoItemForm(instance=modifying_todo)
     if request.method == 'POST':
-        form = ToDoItemForm(request.POST, instance=modifying_todo)
-        if form.is_valid():
-            form.save()
-            return redirect('../')
+        modified_form = ToDoItemForm(request.POST, instance=modifying_todo)
+        if modified_form.is_valid():
+            modified_form.save()
+            return redirect('/todo')
         else:
-            # django.contrib.messages.info(request, "Invalid input!")
-            return HttpResponse("Invalid Input")
-    else:
-        form = ToDoItemForm(instance=modifying_todo)
-        return render(request, "manage_todos.html", {"todo": modifying_todo, "current_date": datetime.date.today, "form": form})
+            return HttpResponse("Invalid Input! return to the previous page to reinput")
+        
+    return render(request, "todo_form.html", {"todo": modifying_todo, "form": form})
     
-def delete_todos(request):
-    if request.method == 'POST':
-        modifying_todo.delete()
+def delete_todo(request, pk):
+    deleting_todo = ToDoItem.objects.get(id=pk)
+    if request.method == 'GET':
+        deleting_todo.delete()
+    return redirect('/todo')
