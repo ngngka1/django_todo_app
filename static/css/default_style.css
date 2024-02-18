@@ -8,7 +8,12 @@ body {
     margin-right: 5%;
 }
 
-.rounded-section {
+body h1 {
+    border-bottom: 2px solid;
+    border-color: rgb(83, 83, 83);
+}
+
+.container {
     text-align: center;
     border: 4px solid;
     border-radius: 8px;
@@ -18,33 +23,6 @@ body {
     margin-top: 10px;
 }
 
-body h1 {
-    border-bottom: 2px solid;
-    border-color: rgb(83, 83, 83);
-}
-
-.bordered-text {
-    text-align: center;
-    border: 4px solid;
-    border-radius: 4px;
-    border-color: black;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin: 2px;
-}
-
-button {
-    font-size: 20px;
-    background-color: lightgreen;
-    border: 5px solid;
-    border-color: darkgreen;
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 10px;
-}
-
 a:link, a:visited {
     color: white;
 
@@ -52,6 +30,41 @@ a:link, a:visited {
 
 a:hover, a:active {
     color: lightblue;
+}
+
+a.button {
+    display: inline-block;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    background-color: lightblue;
+
+    border: 5px;
+    border-style: solid;
+    border-radius: 20px;
+    border-color: rgb(0, 128, 255);
+    cursor: pointer;
+    padding: 10px;
+}
+
+a.button:hover, a.button:active {
+    background-color: rgb(97, 192, 224);
+}
+
+a.delete-button {
+    display: inline-block;
+    font-size: 20px;
+    width: 20px;
+    text-decoration: none;
+    color: black;
+    background-color: lightcoral;
+
+    cursor: pointer;
+
+}
+
+a.delete-button:hover, a.delete-button:active {
+    background-color: rgb(247, 83, 83);
 }
 
 

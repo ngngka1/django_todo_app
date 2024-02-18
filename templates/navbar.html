@@ -1,0 +1,23 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
+    </head>
+
+    <body>
+        <section class="container">
+            <a href="/" class="button"> {# return home page #}
+                Home
+            </a>
+    
+            <a href="/about" class="button"> {# start with '/': absolute path #}
+                About
+            </a>
+    
+            <a href="#contacts" class="button">
+                Contacts
+            </a>
+        </section>
+    </body>
+</html>

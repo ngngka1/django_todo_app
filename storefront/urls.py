@@ -20,7 +20,7 @@ import debug_toolbar
 from . import views
 
 urlpatterns = [
-    path('', views.show_home_page),
+    path('', views.show_home_page, name='index'),
     path('admin/', admin.site.urls),
     path('about/', views.show_about_page),
     path('todo/', include('todo.urls')), # if the path start with todo, django will let the app todo.urls handle the requests

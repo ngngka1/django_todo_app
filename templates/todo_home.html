@@ -1,19 +1,12 @@
-{% include 'navigationbar.html' %}
+{% include 'navbar.html' %}
 {% load static %}
 
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
-        <script src="{% static 'js/changeurl.js' %}"></script>
         <style>
-            .todo-items-div {
-                display: flex;
-                flex-wrap: wrap;
-                
-                align-items: center;
-            }
-
             .todo-item {
+                display: inline-block;
                 margin: 2%;
                 width: 25%;
                 height: 25%;
@@ -22,22 +15,26 @@
     </head>
     <body>
         <h1>Current to-dos</h1>
-        <section class="rounded-section">
-            <a href="{% url 'todo-home' %}"><button>All</button></a>
+        <section class="container">
+            Categories: 
+            <a href="{% url 'todo-home' %}" class="button">All</a>
             {% for subject in subjects %}
                 <!-- question mark is used for key word argument (?query=xxx) etc. -->
-                <a href="{% url 'todo-home' %}?q={{subject.name}}"><button>{{subject.name}}</button></a>
+                <a href="{% url 'todo-home' %}?q={{subject.name}}" class="button">{{subject.name}}</a>
             {% endfor %}
         </section>
+
         <section>
-            <div class="todo-items-div">
+            <div>
+                <p>(Click the name of the to-do to modify, press "×" to delete)</p>
                 {% for todo in todos %}
-                    <div class="rounded-section todo-item">
-                        <a href="{% url 'delete-todo' todo.id %}">
-                            <button style="text-align: right; background-color: red">X</button>
+                    <div class="todo-item container" style="align-items: center;">
+                        Title:
+                        <a href="{% url 'modify-todo' todo.id %}" class="button">
+                            {{todo.title}}
                         </a>
-                        <a href="{% url 'modify-todo' todo.id %}">
-                            <button>{{todo.title}}</button><br>
+                        <a href="{% url 'delete-todo' todo.id %}" class="delete-button">
+                            ×
                         </a>
                         <p>Subject: {{todo.subject}} </p>
                         <p>Due date: {{todo.due_date}}</p>
@@ -45,7 +42,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <a href="{% url 'create-todo' %}"><button>Create a new to-do</button><br></a>
+            <a href="{% url 'create-todo' %}" class="button">Create a new to-do</a>
         </section>
     </body>
 </html>
