@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import debug_toolbar
 from . import views
 
 urlpatterns = [
@@ -24,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', views.show_about_page),
     path('todo/', include('todo.urls')), # if the path start with todo, django will let the app todo.urls handle the requests
+    path('todo_api/', include('todo_api.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 ]

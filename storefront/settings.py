@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sessions',
+    'rest_framework',
     'todo',
     'debug_toolbar',
 ]
@@ -65,7 +66,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates'
+            BASE_DIR / 'storefront' / 'templates',
+            BASE_DIR / 'todo' / 'templates',
+            BASE_DIR / 'todo_api' / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

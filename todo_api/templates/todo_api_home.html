@@ -1,0 +1,31 @@
+{% include 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
+    <title>Document</title>
+    <style>
+        a {
+            color: grey
+        }
+    </style>
+</head>
+<body>
+    <h1>To-do list API</h1>
+        To use the api:<br>
+        <ul>
+            <li>get/ : <a>Get all the data</a></li>
+            <li>get/id/ : <a>Get the data with the specified id</a></li>
+            <li>add/ : <a>Add a new data</a></li>
+            <li>modify/id/ : <a>Modify the data with the specified id</a></li>
+            <li>delete/id/ : <a>Delete the data with the specified id</a></li>
+        </ul>
+
+        <p>Shortcut to get all data: <a href="get" class="button">Get all</a></p>
+</body>
+</html>
+
+{% include 'contacts.html' %}
