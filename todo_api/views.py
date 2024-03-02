@@ -28,7 +28,7 @@ def add_data(request):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET', 'PUT'])
+@api_view(['PUT'])
 def modify_data(request, pk):
     if not ToDoItem.objects.filter(id=pk).exists(): # Check if the instance queryset is empty, if is empty, the item does not exist
         return Response(status=status.HTTP_404_NOT_FOUND)
@@ -41,7 +41,7 @@ def modify_data(request, pk):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(['GET', 'DELETE'])
+@api_view(['DELETE'])
 def delete_data(request, pk):
     if not ToDoItem.objects.filter(id=pk).exists():
         return Response(status=status.HTTP_404_NOT_FOUND)
