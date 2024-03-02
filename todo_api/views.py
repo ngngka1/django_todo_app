@@ -28,27 +28,34 @@ def add_data(request):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT'])
+@api_view(['GET', 'PUT'])
 def modify_data(request, pk):
     if not ToDoItem.objects.filter(id=pk).exists(): # Check if the instance queryset is empty, if is empty, the item does not exist
         return Response(status=status.HTTP_404_NOT_FOUND)
-    else:
-        modifying_todo = ToDoItem.objects.get(id=pk)
+    modifying_todo = ToDoItem.objects.get(id=pk)
+    if request.method == 'PUT':
         serializer = ToDoItemSerializer(modifying_todo, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else: # if method is get
+        serializer = ToDoItemSerializer(modifying_todo)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
-@api_view(['DELETE'])
+@api_view(['GET', 'DELETE'])
 def delete_data(request, pk):
     if not ToDoItem.objects.filter(id=pk).exists():
         return Response(status=status.HTTP_404_NOT_FOUND)
-    else:
-        deleting_todo = ToDoItem.objects.get(id=pk)
+    
+    deleting_todo = ToDoItem.objects.get(id=pk)
+    if request.method == 'DELETE':
         deleting_todo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    else: # if method is get
+        serializer = ToDoItemSerializer(deleting_todo)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
     
     
