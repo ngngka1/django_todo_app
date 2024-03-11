@@ -2,7 +2,7 @@
 
 A to do list web application which has create, modify and delete function
 
-Instructions to run with docker:
+## Instructions to run with docker:
 
 1. get docker image through:
 
