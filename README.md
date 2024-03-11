@@ -23,7 +23,7 @@ docker-compose up
 ### to-do list
 ![to-do list page](assets/Todo.png "to-do list page")
 ### modify to-do item
-![modify todo page](assets/Modify.png "modify todo page")
+![modify todo page](assets/modify.png "modify todo page")
 ### to-do api page
 ![to-do api page](assets/API.png "to-do api page")
 ### to-do api view
