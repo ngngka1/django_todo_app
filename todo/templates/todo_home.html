@@ -2,33 +2,32 @@
 {% load static %}
 
 <html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
         <style>
-            .todo-item {
-                display: inline-block;
-                margin: 2%;
-                width: 25%;
-                height: 25%;
+            .to-do-item {
+                flex-basis: 20vw;
+                max-width: 20vw;
             }
         </style>
     </head>
     <body>
-        <h1>Current to-dos</h1>
-        <section class="container">
-            Categories: 
-            <a href="{% url 'todo-home' %}" class="button">All</a>
-            {% for subject in subjects %}
-                <!-- question mark is used for key word argument (?query=xxx) etc. -->
-                <a href="{% url 'todo-home' %}?q={{subject.name}}" class="button">{{subject.name}}</a>
-            {% endfor %}
-        </section>
-
-        <section>
-            <div>
-                <p>(Click the name of the to-do to modify, press "×" to delete)</p>
+        <main>
+            <h1>Current to-dos</h1>
+            <p>(Click the name of the to-do to modify, press "×" to delete)</p>
+            <div class="container">
+                Categories: 
+                <a href="{% url 'todo-home' %}" class="button">All</a>
+                {% for subject in subjects %}
+                    <!-- question mark is used for key word argument (?query=xxx) etc. -->
+                    <a href="{% url 'todo-home' %}?q={{subject.name}}" class="button">{{subject.name}}</a>
+                {% endfor %}
+            </div>
+    
+            <div class="flex-container">
                 {% for todo in todos %}
-                    <div class="todo-item container" style="align-items: center;">
+                    <div class="container flex-box to-do-item">
                         Title:
                         <a href="{% url 'modify-todo' todo.id %}" class="button">
                             {{todo.title}}
@@ -41,9 +40,11 @@
                         <p>Completed: {{todo.completed}}</p>
                     </div>
                 {% endfor %}
+                <div class="container flex-box to-do-item" style="display:inline-flex; justify-content: center; align-items: center;">
+                    <a href="{% url 'create-todo' %}" class="button flex-box">+ Create a new to-do</a>
+                </div>
             </div>
-            <a href="{% url 'create-todo' %}" class="button">Create a new to-do</a>
-        </section>
+        </main>
     </body>
 </html>
 

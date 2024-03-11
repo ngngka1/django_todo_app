@@ -1,32 +1,89 @@
 
-body {
-    background-color: rgb(36, 36, 36);
-    font-family: sans-serif;
-    color: white;
+main {
+    box-sizing: border-box;
+    /* background: linear-gradient(to bottom,#5b6c7b, #215075); */
+    --gradient-color-1: 106, 70, 167;
+    --gradient-color-2: 12, 99, 161;
+    background: linear-gradient(rgb(var(--gradient-color-1)), rgb(var(--gradient-color-2)));
+    
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ECF4D6;
     font-size: 20px;
-    margin-left: 5%;
-    margin-right: 5%;
+    box-shadow: 0px 0px 10px  black;
+    border-radius: 20px;
+
+    
+    padding: 2%;
+    margin: 5%;
 }
 
-body h1 {
+main h1 {
     border-bottom: 2px solid;
-    border-color: rgb(83, 83, 83);
+    border-color: #2D9596;
+}
+
+body {
+    background: linear-gradient(to right, #0056ac, #00d0db)
 }
 
 .container {
+    box-shadow: 0px 0px 10px  black;
+    /* backdrop-filter: blur(10px); */
+    background-color: rgb(0, 0, 0, 0.1);
+    justify-content: center;
     text-align: center;
-    border: 4px solid;
     border-radius: 8px;
-    border-color: black;
     padding: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
+    transition: all 200ms ease-in-out;
 }
 
-a:link, a:visited {
-    color: white;
-
+.container:hover {
+    background-color: transparent;
 }
+
+#todo {
+    background: linear-gradient(rgba(var(--gradient-color-1), 0.7), rgba(var(--gradient-color-2), 0.7)), url("../img/todolist.png");
+    background-size: 100% 100%;
+    transition: all 200ms ease-in-out;
+}
+
+#todo-api {
+    background: linear-gradient(rgba(var(--gradient-color-1), 0.7), rgba(var(--gradient-color-2), 0.7)), url("../img/api.jpeg");
+    background-size: 100% 100%;
+}
+
+/* #todo:hover {
+    background: linear-gradient(rgba(var(--gradient-color-1), 0.5), rgba(var(--gradient-color-2), 0.5)), url("../img/todolist.png");
+    background-size: 100% 100%;
+} */
+
+#todo.p #todo-api.p {
+    backdrop-filter: blur(20px) saturate(70%);
+}
+
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    column-gap: 8%;
+    row-gap: 8%;
+    padding: 5%;
+    overflow: hidden;
+}
+
+.flex-box {
+    flex: 1 1;
+}
+
+.grid-container {
+    display: grid;
+    gap: 50px 50px;
+}
+
 
 a:hover, a:active {
     color: lightblue;
@@ -35,20 +92,19 @@ a:hover, a:active {
 a.button {
     display: inline-block;
     font-size: 20px;
-    text-decoration: none;
+    text-decoration: none;  /* to remove the underline */
     color: black;
-    background-color: lightblue;
+    background-color: #ECF4D6;
 
-    border: 5px;
-    border-style: solid;
-    border-radius: 20px;
-    border-color: rgb(0, 128, 255);
+    border-radius: 10px;
+    border-color: #2D9596;
     cursor: pointer;
     padding: 10px;
+    transition: all 200ms ease-in-out;
 }
 
 a.button:hover, a.button:active {
-    background-color: rgb(97, 192, 224);
+    background-color: #b6bda5;
 }
 
 a.delete-button {

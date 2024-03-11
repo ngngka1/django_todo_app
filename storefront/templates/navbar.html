@@ -1,23 +1,35 @@
 {% load static %}
 
 <html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
     </head>
 
     <body>
-        <section class="container">
-            <a href="/" class="button"> {# return home page #}
-                Home
-            </a>
+        <main>
+
+            <div class="flex-container" style="padding: 1%; text-align: center">
+                <a href="/" class="button flex-box"> {# return home page #}
+                    Home
+                </a>
+        
+                <a href="/about" class="button flex-box"> {# start with '/': absolute path #}
+                    About
+                </a>
+        
+                <a href="#contacts" class="button flex-box">
+                    Contacts
+                </a>
     
-            <a href="/about" class="button"> {# start with '/': absolute path #}
-                About
-            </a>
+                <a href="/todo/" class="button flex-box">
+                    to-do list
+                </a>
     
-            <a href="#contacts" class="button">
-                Contacts
-            </a>
-        </section>
+                <a href="/todo_api/" class="button flex-box">
+                    to-do list API
+                </a>
+            </div>
+        </main>
     </body>
 </html>

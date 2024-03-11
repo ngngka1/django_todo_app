@@ -6,25 +6,28 @@
         <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
     </head>
     <body>
-        {% if not todo %}  <!-- Create todo -->
-            <h1>Creating new todo</h1>
-            <section>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    {{ form.as_table }}
-                    <input type="submit" value="Submit">
-                </form>
-            </section>
-        {% else %} <!-- Modify chosen todo -->
-            <h1> Modifying todo: {{todo.title}}</h1>
-            <section>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    {{ form.as_table }}
-                    <input type="submit" value="Save">
-                </form>
-            </section>
-        {% endif %}
+        <main>
+
+            {% if not todo %}  <!-- Create todo -->
+                <h1>Creating new todo</h1>
+                <section>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                        <input type="submit" value="Submit">
+                    </form>
+                </section>
+            {% else %} <!-- Modify chosen todo -->
+                <h1> Modifying todo: {{todo.title}}</h1>
+                <section>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        {{ form.as_table }}
+                        <input type="submit" value="Save">
+                    </form>
+                </section>
+            {% endif %}
+        </main>
     </body>
 </html>
 

@@ -2,19 +2,29 @@
 {% load static %}
 
 <html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <link rel="stylesheet" href="{% static 'css/default_style.css' %}">
     </head>
 
     <body>
-        <h1>Home page</h1>
-        This is a website with different web applications
-        <section class="container">
-            <p>Available apps:</p>
-            <p><a href="todo" class="button">To-do list</a></p>
-            <p><a href="todo_api" class="button">To-do list API</a></p>
-        </section>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <main>
+
+            <h1>Available apps</h1>
+            <div class="container flex-container main">
+                    
+                <div id="todo" class="container flex-box" style="padding: 10%;">
+                    <p>Manage your daily tasks with the online to-do list app </p>
+                    <a href="todo" class="button">To-do list</a>
+                </div>
+                <div id="todo-api" class="container flex-box" style="padding: 10%">
+                    <p>Interact with the to-do list app API </p>
+                    <a href="todo_api" class="button">To-do list API</a>
+                </div>
+    
+            </div>
+        </main>
+        
     </body>
 </html>
 
